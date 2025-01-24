@@ -17,8 +17,8 @@ This repository contains detailed steps, configuration files, and necessary comm
 ## Overview
 MySQL replication is a process that allows you to synchronize databases between a Master and one or more Slave servers. This guide covers:
 
-    - **Master-Slave Replication: One-way replication from Master to Slave.
-    - **Master-Master Replication: Bi-directional replication between two servers.
+    - **Master-Slave Replication**: One-way replication from Master to Slave.
+    - **Master-Master Replication**: Bi-directional replication between two servers.
 
 ## Prerequisites
 1. Two servers:
