@@ -11,8 +11,6 @@ This repository contains detailed steps, configuration files, and necessary comm
     - [Master-Slave Replication](#master-slave-replication)
     - [Master-Master Replication](#master-master-replication)
 4. [Configuration Files](#configuration-files)
-5. [References](#references)
-6. [License](#license)
 
 ---
 
