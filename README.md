@@ -33,7 +33,13 @@ MySQL replication is a process that allows you to synchronize databases between 
 
 #### 1. Configure the Master Server:
 
-Edit mysqld.cnf to enable logging and assign server-id:
+Open the MySQL configuration file:
+
+```bash
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+Update the following:
 
 ```ini
 bind-address = 172.16.1.100
@@ -51,12 +57,15 @@ GRANT REPLICATION SLAVE ON *.* TO 'replica'@'172.16.2.5';
 SHOW MASTER STATUS\G
 ```
 
-Record File and Position values.
+Record the File and Position values (e.g., mysql-bin.000001, 619).
 
 
 #### 2. Configure the Slave Server:
 
-Edit mysqld.cnf:
+Open the MySQL configuration file:
+ ```bash
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
 
 ```ini
 bind-address = 172.16.2.5
@@ -67,6 +76,7 @@ log_bin = /var/log/mysql/mysql-bin.log
 Restart MySQL and set up replication:
 
 ```bash
+sudo systemctl restart mysql
 sudo mysql
 STOP SLAVE;
 CHANGE MASTER TO
@@ -80,10 +90,17 @@ START SLAVE;
 
 #### 3. Test the Configuration:
 
-Create a database on the Master and verify replication on the Slave:
+On the Master server, create a test database:
 
 ```sql
+sudo mysql -u root -p
 CREATE DATABASE replicatest;
+```
+
+On the Slave server, verify the replication:
+
+```sql
+sudo mysql
 SHOW DATABASES;
 ```
 
