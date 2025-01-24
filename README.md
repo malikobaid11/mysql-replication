@@ -78,6 +78,13 @@ CHANGE MASTER TO
 START SLAVE;
 ```
 
+#### 3. Test the Configuration:
 
+Create a database on the Master and verify replication on the Slave:
+
+```sql
+CREATE DATABASE replicatest;
+SHOW DATABASES;
+```
 
 
