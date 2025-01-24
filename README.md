@@ -15,9 +15,10 @@ This repository contains detailed steps, configuration files, and necessary comm
 ---
 
 ## Overview
-MySQL replication synchronizes databases between servers. This repository includes:
-- **Master-Slave Replication**: One-way replication from Master to Slave.
-- **Master-Master Replication**: Bi-directional replication between two servers.
+MySQL replication is a process that allows you to synchronize databases between a Master and one or more Slave servers. This guide covers:
+
+    - **Master-Slave Replication: One-way replication from Master to Slave.
+    - **Master-Master Replication: Bi-directional replication between two servers.
 
 ## Prerequisites
 1. Two servers:
@@ -27,3 +28,9 @@ MySQL replication synchronizes databases between servers. This repository includ
 3. Allow MySQL traffic through the firewall:
    ```bash
    sudo ufw allow 3306/tcp
+   ```
+
+## Setup Steps
+
+
+
