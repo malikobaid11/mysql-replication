@@ -125,3 +125,29 @@ START SLAVE;
 
 ```
 
+#### 2. Configure Master2 as a Slave for Master1
+
+Create a replication user on Master2:
+
+```sql
+CREATE USER 'replica'@'172.16.1.100' IDENTIFIED BY 'password';
+GRANT REPLICATION SLAVE ON *.* TO 'replica'@'172.16.1.100';
+```
+
+Stop the Slave process:
+
+```sql
+STOP SLAVE;
+```
+
+Update the Slave configuration to point to Master1:
+
+```sql
+CHANGE MASTER TO
+  MASTER_HOST='172.16.1.100',
+  MASTER_USER='replica',
+  MASTER_PASSWORD='password',
+  MASTER_LOG_FILE='mysql-bin.000001',
+  MASTER_LOG_POS=619;
+START SLAVE;
+```
