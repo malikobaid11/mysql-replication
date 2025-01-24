@@ -1,5 +1,3 @@
-# mysql-replication
-
 # MySQL Replication Setup
 
 This repository contains detailed steps, configuration files, and necessary commands to set up **MySQL Master-Slave** and **Master-Master** replication.
@@ -31,6 +29,56 @@ MySQL replication is a process that allows you to synchronize databases between 
    ```
 
 ## Setup Steps
+
+### Master-Slave Replication
+
+#### 1. Configure the Master Server:
+
+Edit mysqld.cnf to enable logging and assign server-id:
+
+```ini
+bind-address = 172.16.1.100
+server-id = 1
+log_bin = /var/log/mysql/mysql-bin.log
+```
+
+Restart MySQL and create a replication user:
+
+```bash
+sudo systemctl restart mysql
+sudo mysql -u root -p
+CREATE USER 'replica'@'172.16.2.5' IDENTIFIED BY 'ePlanet0!';
+GRANT REPLICATION SLAVE ON *.* TO 'replica'@'172.16.2.5';
+SHOW MASTER STATUS\G
+```
+
+Record File and Position values.
+
+
+#### 2. Configure the Slave Server:
+
+Edit mysqld.cnf:
+
+```ini
+bind-address = 172.16.2.5
+server-id = 2
+log_bin = /var/log/mysql/mysql-bin.log
+```
+
+Restart MySQL and set up replication:
+
+```bash
+sudo mysql
+STOP SLAVE;
+CHANGE MASTER TO
+  MASTER_HOST='172.16.1.100',
+  MASTER_USER='replica',
+  MASTER_PASSWORD='password',
+  MASTER_LOG_FILE='mysql-bin.000001',
+  MASTER_LOG_POS=619;
+START SLAVE;
+```
+
 
 
 
