@@ -103,5 +103,25 @@ On the Slave server, verify the replication:
 sudo mysql
 SHOW DATABASES;
 ```
+### Master-Master Replication
 
+#### 1. Configure Master1 as a Slave for Master2
+
+Stop the Slave process:
+
+```sql
+STOP SLAVE;
+```
+Update the Slave configuration to point to Master2:
+
+```sql
+CHANGE MASTER TO
+  MASTER_HOST='172.16.2.5',
+  MASTER_USER='replica',
+  MASTER_PASSWORD='password',
+  MASTER_LOG_FILE='mysql-bin.000008',
+  MASTER_LOG_POS=1278;
+START SLAVE;
+
+```
 
