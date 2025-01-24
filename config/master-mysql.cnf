@@ -1,7 +1,7 @@
-Master Configuration (/etc/mysql/mysql.conf.d/mysqld.cnf):
+#Master Configuration (/etc/mysql/mysql.conf.d/mysqld.cnf):
 
-```ini
+
 bind-address = 172.16.1.100
 server-id = 1
 log_bin = /var/log/mysql/mysql-bin.log
-```
+
